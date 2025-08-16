@@ -1,0 +1,15 @@
+--> Documentation: https://1axen.github.io/blink
+--> Root.blink defines the root network file for the project, the network settings for the project are defined here.
+
+option ClientOutput = "../Source/Client/Network.luau"
+option ServerOutput = "../Source/Server/Network.luau"
+option TypesOutput = "../Source/Shared/Types/Network.luau"
+
+option PromiseLibrary = "ReplicatedStorage.Packages.Promise"
+
+option WriteValidations = true
+option Casing = Pascal
+ 
+--> Below this point, we should import the groups for relevant .blink files under the /Network directory.
+--> These groups represent the events used in the project, in order to not clutter this file - they're moved
+--> into a separate directory.
