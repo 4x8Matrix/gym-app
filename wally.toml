@@ -23,6 +23,9 @@ DevSuite = "4x8matrix/dev-suite@0.0.6"
 State = "4x8matrix/state@2.0.1"
 Shake = "sleitnick/shake@1.1.0"
 Squash = "data-oriented-house/squash@2.4.0"
+Fusion = "elttob/fusion@0.3.0"
+Base64 = "reselim/base64@3.0.0"
+PngLuau = "sircfenner/png-luau@0.1.0"
 
 [server-dependencies]
 DataKeep = "noahrepublic/datakeep@4.1.0"

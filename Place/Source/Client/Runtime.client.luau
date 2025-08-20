@@ -22,7 +22,6 @@ local RUNTIME_MODULES_TO_REQUIRE = table.freeze({
 	ReplicatedFirst.Client.Debug,
 	ReplicatedFirst.Client.Cameras,
 	ReplicatedFirst.Client.Components,
-	ReplicatedFirst.Client.Interfaces,
 	ReplicatedFirst.Client.Singletons,
 	ReplicatedFirst.Client.Listeners,
 })

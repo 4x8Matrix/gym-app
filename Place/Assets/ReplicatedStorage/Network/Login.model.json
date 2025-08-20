@@ -1,0 +1,17 @@
+{
+	"ClassName": "Folder",
+	"Children": [
+		{
+			"Name": "ClientRequestLoginState",
+			"ClassName": "RemoteEvent"
+		},
+		{
+			"Name": "ClientRequestLogin",
+			"ClassName": "RemoteEvent"
+		},
+		{
+			"Name": "ServerSendLoginState",
+			"ClassName": "RemoteEvent"
+		}
+	]
+}
