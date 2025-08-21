@@ -19,7 +19,7 @@ local STATE_PAGE_DICT = table.freeze({
 	Login = require(script.Parent.Pages.Login),
 	Home = require(script.Parent.Pages.Home),
 	Error = require(script.Parent.Pages.Error),
-	QR = require(script.Parent.Pages.QR)
+	QR = require(script.Parent.Pages.QR),
 })
 
 local ICON_PAGE_DICT = table.freeze({
@@ -29,14 +29,17 @@ local ICON_PAGE_DICT = table.freeze({
 	QR = Theme.QRIcon,
 })
 
-return function(scope: FusionTypes.Scope, props: {
-	overrideSizeConstraints: UDim2?
-}): ScreenGui
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		overrideSizeConstraints: UDim2?,
+	}
+): ScreenGui
 	return scope:New("CanvasGroup")({
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		Position = UDim2.fromScale(0.5, 0.5),
 		BackgroundColor3 = Theme.LightColor,
-		
+
 		Size = props.overrideSizeConstraints and props.overrideSizeConstraints or UDim2.fromScale(1, 1),
 
 		[Fusion.Children] = {
@@ -50,7 +53,7 @@ return function(scope: FusionTypes.Scope, props: {
 					end
 
 					return imageId
-				end)
+				end),
 			}),
 
 			Border(scope, {}),
@@ -67,7 +70,7 @@ return function(scope: FusionTypes.Scope, props: {
 
 				OnActivated = function()
 					State.Callbacks.ExitButtonActivated()
-				end
+				end,
 			}),
 
 			Frame(scope, {
@@ -90,11 +93,11 @@ return function(scope: FusionTypes.Scope, props: {
 						pageToRender(scope, {}),
 
 						UICorner(scope, {
-							CornerRadius = UDim.new(0.1, 0)
+							CornerRadius = UDim.new(0.1, 0),
 						}),
 					}
-				end)
-			})
-		}
+				end),
+			}),
+		},
 	})
 end

@@ -8,11 +8,14 @@ local FusionTypes = require(ReplicatedStorage.Shared.Types.Fusion)
 
 local Theme = require(ReplicatedFirst.Client.Interfaces.Theme)
 
-return function(scope: FusionTypes.Scope, props: {
-	Padding: UDim?,
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		Padding: UDim?,
 
-	[any]: any
-})
+		[any]: any,
+	}
+)
 	local updatedProps = Sift.Dictionary.copy(props)
 	local useCanvas = props.Canvas
 

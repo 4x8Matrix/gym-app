@@ -40,7 +40,7 @@ function LoginSingleton.LogInAsync(self: LoginSingleton, player: Player)
 			["Accept"] = "application/json",
 			["Authorization"] = "Basic cm8uY2xpZW50Og==",
 		},
-		Body = `grant_type=password&username={HttpService:UrlEncode(email)}&password={pin}&scope=pgcapi+offline_access`
+		Body = `grant_type=password&username={HttpService:UrlEncode(email)}&password={pin}&scope=pgcapi+offline_access`,
 	})
 
 	if response.Success then
@@ -86,6 +86,12 @@ function LoginSingleton.OnStart(self: LoginSingleton)
 		keep.Data.Pin = buffer.tostring(Base64.decode(pin))
 
 		self:LogInAsync(player)
+	end)
+
+	loginNamespace.ClientRequestPin.OnServerEvent:Connect(function(player: Player)
+		local keep = getPlayerKeep(player):expect()
+
+		loginNamespace.ServerSendPin:FireClient(player, keep.Data.Pin)
 	end)
 end
 

@@ -25,8 +25,8 @@ function InterfaceSingleton.CreateInterface(self: InterfaceSingleton)
 		ResetOnSpawn = false,
 
 		[Fusion.Children] = {
-			Base(State.Scope, {})
-		}
+			Base(State.Scope, {}),
+		},
 	})
 
 	screenGui.Parent = Players.LocalPlayer.PlayerGui

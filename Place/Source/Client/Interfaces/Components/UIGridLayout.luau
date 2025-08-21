@@ -12,5 +12,5 @@ return function(
 		[any]: any,
 	}
 )
-	return scope:New("UIAspectRatioConstraint")(Sift.Dictionary.merge({}, props))
+	return scope:New("UIGridLayout")(Sift.Dictionary.merge({}, props))
 end

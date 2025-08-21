@@ -22,7 +22,7 @@ function QRSingleton.GenerateQRCode(self: QRSingleton, player: Player): { [any]:
 		Headers = {
 			["Accept"] = "application/json",
 			["Authorization"] = `Bearer {accessToken}`,
-		}
+		},
 	})
 
 	if not pureGymResponse.Success then
@@ -32,10 +32,10 @@ function QRSingleton.GenerateQRCode(self: QRSingleton, player: Player): { [any]:
 	end
 
 	local body = HttpService:JSONDecode(pureGymResponse.Body)
-	
+
 	local qrCodeResponse = HttpService:RequestAsync({
 		Url = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data={body.QrCode}`,
-		Method = "GET"
+		Method = "GET",
 	})
 
 	if not qrCodeResponse.Success then

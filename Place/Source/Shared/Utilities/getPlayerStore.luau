@@ -11,7 +11,7 @@ local playerData = {
 	StateVersion = 0,
 
 	Pin = "-1",
-	Email = ""
+	Email = "",
 }
 
 export type PlayerData = typeof(playerData)

@@ -10,7 +10,7 @@ local Base = require(ReplicatedFirst.Client.Interfaces.Interfaces.Base)
 
 return function(parent)
 	local windowObject = Base(State.Scope, {
-		overrideSizeConstraints = UDim2.fromOffset(432, 969.6)
+		overrideSizeConstraints = UDim2.fromOffset(432, 969.6),
 	})
 
 	windowObject.Parent = parent

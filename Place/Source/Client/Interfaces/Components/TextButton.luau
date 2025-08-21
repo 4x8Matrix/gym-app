@@ -8,9 +8,12 @@ local FusionTypes = require(ReplicatedStorage.Shared.Types.Fusion)
 
 local Theme = require(ReplicatedFirst.Client.Interfaces.Theme)
 
-return function(scope: FusionTypes.Scope, props: {
-	[any]: any
-})
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		[any]: any,
+	}
+)
 	return scope:New("TextButton")(Sift.Dictionary.merge({
 		Size = UDim2.fromScale(1, 1),
 		AnchorPoint = Vector2.new(0.5, 0.5),

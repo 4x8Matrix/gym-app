@@ -12,6 +12,14 @@
 		{
 			"Name": "ServerSendLoginState",
 			"ClassName": "RemoteEvent"
+		},
+		{
+			"Name": "ClientRequestPin",
+			"ClassName": "RemoteEvent"
+		},
+		{
+			"Name": "ServerSendPin",
+			"ClassName": "RemoteEvent"
 		}
 	]
 }

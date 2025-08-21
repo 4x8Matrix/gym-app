@@ -16,14 +16,16 @@ local UICorner = require(ReplicatedFirst.Client.Interfaces.Components.UICorner)
 local UIPadding = require(ReplicatedFirst.Client.Interfaces.Components.UIPadding)
 local UIListLayout = require(ReplicatedFirst.Client.Interfaces.Components.UIListLayout)
 
-local Gym = require(ReplicatedFirst.Client.Interfaces.Interfaces.Pages.Home.Gym)
 local History = require(ReplicatedFirst.Client.Interfaces.Interfaces.Pages.Home.History)
 local Navigation = require(ReplicatedFirst.Client.Interfaces.Interfaces.Pages.Home.Navigation)
-local Statistics = require(ReplicatedFirst.Client.Interfaces.Interfaces.Pages.Home.Statistics)
+local Activity = require(ReplicatedFirst.Client.Interfaces.Interfaces.Pages.Home.Activity)
 
-return function(scope: FusionTypes.Scope, props: {
-	overrideSizeConstraints: UDim2?
-}): ScreenGui
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		overrideSizeConstraints: UDim2?,
+	}
+): ScreenGui
 	return Frame(scope, {
 		BackgroundTransparency = 1,
 
@@ -34,16 +36,15 @@ return function(scope: FusionTypes.Scope, props: {
 				Padding = UDim.new(0.02),
 				SortOrder = Enum.SortOrder.LayoutOrder,
 				HorizontalAlignment = Enum.HorizontalAlignment.Left,
-				VerticalAlignment = Enum.VerticalAlignment.Top
+				VerticalAlignment = Enum.VerticalAlignment.Top,
 			}),
 			UIPadding(scope, {
-				Padding = UDim.new(0.02)
+				Padding = UDim.new(0.02),
 			}),
 
 			Navigation(scope, {}),
-			Gym(scope, {}),
-			Statistics(scope, {}),			
+			Activity(scope, {}),
 			History(scope, {}),
-		}
+		},
 	})
 end

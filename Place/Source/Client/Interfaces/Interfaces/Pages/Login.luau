@@ -16,19 +16,22 @@ local TextLabel = require(ReplicatedFirst.Client.Interfaces.Components.TextLabel
 local UICorner = require(ReplicatedFirst.Client.Interfaces.Components.UICorner)
 local UIPadding = require(ReplicatedFirst.Client.Interfaces.Components.UIPadding)
 
-return function(scope: FusionTypes.Scope, props: {
-	overrideSizeConstraints: UDim2?
-}): ScreenGui
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		overrideSizeConstraints: UDim2?,
+	}
+): ScreenGui
 	local inputBox0 = InputBox(scope, {
 		Size = UDim2.fromScale(0.8, 0.05),
 		Position = UDim2.fromScale(0.5, 0.3),
-		Text = "Someone@gmail.com"
+		Text = "Someone@gmail.com",
 	})
 
 	local inputBox1 = InputBox(scope, {
 		Size = UDim2.fromScale(0.8, 0.05),
 		Position = UDim2.fromScale(0.5, 0.45),
-		Text = "00000000"
+		Text = "00000000",
 	})
 
 	return Frame(scope, {
@@ -73,9 +76,9 @@ return function(scope: FusionTypes.Scope, props: {
 				[Fusion.Children] = {
 					UICorner(scope, {}),
 					UIPadding(scope, {
-						Padding = UDim.new(0.2, 0)
-					})
-				}
+						Padding = UDim.new(0.2, 0),
+					}),
+				},
 			}),
 
 			TextLabel(scope, {
@@ -84,6 +87,6 @@ return function(scope: FusionTypes.Scope, props: {
 				Text = "We respect your privacy. We do not collect, store, or use your personal data without your consent. Any information shared during this Roblox experience is used solely for gameplay functionality and will be deleted once you leave the experience. No data will be retained, saved, or used beyond your active session.",
 				FontFace = Theme.Font.Title,
 			}),
-		}
+		},
 	})
 end

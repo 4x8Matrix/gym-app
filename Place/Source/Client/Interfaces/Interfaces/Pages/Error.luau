@@ -13,9 +13,7 @@ local Frame = require(ReplicatedFirst.Client.Interfaces.Components.Frame)
 local ImageLabel = require(ReplicatedFirst.Client.Interfaces.Components.ImageLabel)
 local TextLabel = require(ReplicatedFirst.Client.Interfaces.Components.TextLabel)
 
-return function(scope: FusionTypes.Scope, props: {
-	
-}): ScreenGui
+return function(scope: FusionTypes.Scope, props: {}): ScreenGui
 	return Frame(scope, {
 		BackgroundTransparency = 1,
 
@@ -29,9 +27,9 @@ return function(scope: FusionTypes.Scope, props: {
 
 			TextLabel(scope, {
 				Position = UDim2.fromScale(0.5, 0.3),
-					Size = UDim2.fromScale(1, 0.03),
+				Size = UDim2.fromScale(1, 0.03),
 				Text = `You're not supposed\nto be here!`,
 			}),
-		}
+		},
 	})
 end

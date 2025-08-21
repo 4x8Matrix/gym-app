@@ -32,7 +32,7 @@ end
 function LoginSingleton.RequestLogin(self: LoginSingleton, email: string, pin: string)
 	local thread = coroutine.running()
 	local trove = Trove.new()
-	
+
 	trove:Add(self.LoginFailed:Connect(function()
 		coroutine.resume(thread, false)
 	end))
@@ -51,6 +51,18 @@ function LoginSingleton.RequestLogin(self: LoginSingleton, email: string, pin: s
 	trove:Destroy()
 
 	return result
+end
+
+function LoginSingleton.RequestPin(self: LoginSingleton)
+	local thread = coroutine.running()
+
+	local connection = loginNamespace.ServerSendPin.OnClientEvent:Once(function(...)
+		coroutine.resume(thread, ...)
+	end)
+
+	loginNamespace.ClientRequestPin:FireServer()
+
+	return coroutine.yield()
 end
 
 function LoginSingleton.OnStart(self: LoginSingleton)

@@ -13,11 +13,14 @@ local ImageLabel = require(ReplicatedFirst.Client.Interfaces.Components.ImageLab
 local UICorner = require(ReplicatedFirst.Client.Interfaces.Components.UICorner)
 local UIAspectRatioConstraint = require(ReplicatedFirst.Client.Interfaces.Components.UIAspectRatioConstraint)
 
-return function(scope: FusionTypes.Scope, props: {
-	ImageId: string?,
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		ImageId: string?,
 
-	[any]: any
-})
+		[any]: any,
+	}
+)
 	return {
 		Frame(scope, {
 			Size = UDim2.fromScale(2, 2),
@@ -26,9 +29,9 @@ return function(scope: FusionTypes.Scope, props: {
 			BackgroundColor3 = Theme.DarkColor,
 
 			[Fusion.Children] = {
-				UICorner(scope, { }),
-				UIAspectRatioConstraint(scope, { }),
-			}
+				UICorner(scope, {}),
+				UIAspectRatioConstraint(scope, {}),
+			},
 		}),
 
 		Frame(scope, {
@@ -38,8 +41,8 @@ return function(scope: FusionTypes.Scope, props: {
 			BackgroundColor3 = Theme.DarkColor,
 
 			[Fusion.Children] = {
-				UICorner(scope, { }),
-				UIAspectRatioConstraint(scope, { }),
+				UICorner(scope, {}),
+				UIAspectRatioConstraint(scope, {}),
 
 				Frame(scope, {
 					Size = UDim2.fromScale(0.8, 0.8),
@@ -48,8 +51,8 @@ return function(scope: FusionTypes.Scope, props: {
 					BackgroundColor3 = Theme.LightColor,
 
 					[Fusion.Children] = {
-						UICorner(scope, { }),
-						UIAspectRatioConstraint(scope, { }),
+						UICorner(scope, {}),
+						UIAspectRatioConstraint(scope, {}),
 
 						ImageLabel(scope, {
 							Image = props.ImageId,
@@ -57,12 +60,12 @@ return function(scope: FusionTypes.Scope, props: {
 							Size = UDim2.fromScale(0.7, 0.7),
 
 							[Fusion.Children] = {
-								UICorner(scope, { }),
-							}
-						})
-					}
-				})
-			}
-		})
+								UICorner(scope, {}),
+							},
+						}),
+					},
+				}),
+			},
+		}),
 	}
 end

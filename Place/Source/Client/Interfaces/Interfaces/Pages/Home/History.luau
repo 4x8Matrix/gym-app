@@ -14,15 +14,15 @@ local Header = require(ReplicatedFirst.Client.Interfaces.Components.Header)
 local Border = require(ReplicatedFirst.Client.Interfaces.Components.Border)
 local UICorner = require(ReplicatedFirst.Client.Interfaces.Components.UICorner)
 
-return function(scope: FusionTypes.Scope, props: { })
+return function(scope: FusionTypes.Scope, props: {})
 	return Frame(scope, {
 		BackgroundColor3 = Theme.LightColor,
 		Size = UDim2.fromScale(1, 1),
 
 		[Fusion.Children] = {
 			UICorner(scope, {
-				CornerRadius = UDim.new(0.1)
-			})
-		}
+				CornerRadius = UDim.new(0.1),
+			}),
+		},
 	})
 end

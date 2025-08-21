@@ -12,7 +12,7 @@ local StateSingleton = {}
 
 function StateSingleton.FetchPlayerState(self: StateSingleton, player: Player)
 	local playerKeep = getPlayerKeep(player):expect()
-	
+
 	return playerKeep.Data.SavedState
 end
 

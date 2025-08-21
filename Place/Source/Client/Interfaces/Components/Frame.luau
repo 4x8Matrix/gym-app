@@ -6,12 +6,15 @@ local Sift = require(ReplicatedStorage.Packages.Sift)
 
 local FusionTypes = require(ReplicatedStorage.Shared.Types.Fusion)
 
-return function(scope: FusionTypes.Scope, props: {
-	Canvas: boolean?,
-	Scrolling: boolean?,
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		Canvas: boolean?,
+		Scrolling: boolean?,
 
-	[any]: any
-})
+		[any]: any,
+	}
+)
 	local updatedProps = Sift.Dictionary.copy(props)
 	local useCanvas = props.Canvas
 	local useScrolling = props.Scrolling
@@ -33,9 +36,11 @@ return function(scope: FusionTypes.Scope, props: {
 		end
 	end
 
-	return scope:New((useCanvas and "CanvasGroup") or (useScrolling and "ScrollingFrame") or "Frame")(Sift.Dictionary.mergeDeep({
-		Size = UDim2.fromScale(1, 1),
-		Position = UDim2.fromScale(0.5, 0.5),
-		AnchorPoint = Vector2.new(0.5, 0.5),
-	}, updatedProps))
+	return scope:New((useCanvas and "CanvasGroup") or (useScrolling and "ScrollingFrame") or "Frame")(
+		Sift.Dictionary.mergeDeep({
+			Size = UDim2.fromScale(1, 1),
+			Position = UDim2.fromScale(0.5, 0.5),
+			AnchorPoint = Vector2.new(0.5, 0.5),
+		}, updatedProps)
+	)
 end

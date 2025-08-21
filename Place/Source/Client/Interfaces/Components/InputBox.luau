@@ -14,16 +14,19 @@ local UICorner = require(ReplicatedFirst.Client.Interfaces.Components.UICorner)
 local UIStroke = require(ReplicatedFirst.Client.Interfaces.Components.UIStroke)
 local UIPadding = require(ReplicatedFirst.Client.Interfaces.Components.UIPadding)
 
-return function(scope: FusionTypes.Scope, props: {
-	Text: string?,
-	Size: UDim2,
-	Position: UDim2,
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		Text: string?,
+		Size: UDim2,
+		Position: UDim2,
 
-	OnTextUpdated: ((content: string) -> ())?,
-	OnFocusLost: (() -> ())?,
+		OnTextUpdated: ((content: string) -> ())?,
+		OnFocusLost: (() -> ())?,
 
-	[any]: any
-})
+		[any]: any,
+	}
+)
 	-- 0: not selected, 1: selected
 	local inputState = scope:Value(0)
 	local animated = scope:Tween(inputState, TweenInfo.new(0.1))
@@ -44,7 +47,7 @@ return function(scope: FusionTypes.Scope, props: {
 			}),
 
 			UICorner(scope, {
-				CornerRadius = UDim.new(0.2, 0)
+				CornerRadius = UDim.new(0.2, 0),
 			}),
 
 			TextBox(scope, {
@@ -75,7 +78,7 @@ return function(scope: FusionTypes.Scope, props: {
 
 				[Fusion.Children] = {
 					UICorner(scope, {
-						CornerRadius = UDim.new(0.225, 0)
+						CornerRadius = UDim.new(0.225, 0),
 					}),
 
 					UIPadding(scope, {
@@ -83,9 +86,9 @@ return function(scope: FusionTypes.Scope, props: {
 						PaddingBottom = UDim.new(0.275, 0),
 						PaddingLeft = UDim.new(0.05, 0),
 						PaddingRight = UDim.new(0.05, 0),
-					})
-				}
-			})
-		}
+					}),
+				},
+			}),
+		},
 	})
 end

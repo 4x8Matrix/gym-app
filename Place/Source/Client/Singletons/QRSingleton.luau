@@ -13,7 +13,7 @@ local QRSingleton = {}
 
 function QRSingleton.RequestQRCode(self: QRSingleton)
 	local thread = coroutine.running()
-	
+
 	local connection = stateNamespace.ServerSendQRCode.OnClientEvent:Once(function(...)
 		coroutine.resume(thread, ...)
 	end)

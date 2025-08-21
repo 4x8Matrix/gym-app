@@ -12,14 +12,17 @@ local ImageLabel = require(ReplicatedFirst.Client.Interfaces.Components.ImageLab
 local UICorner = require(ReplicatedFirst.Client.Interfaces.Components.UICorner)
 local UIAspectRatioConstraint = require(ReplicatedFirst.Client.Interfaces.Components.UIAspectRatioConstraint)
 
-return function(scope: FusionTypes.Scope, props: {
-	Icon: string?,
-	InvertedColors: boolean?,
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		Icon: string?,
+		InvertedColors: boolean?,
 
-	OnActivated: (() -> ())?,
+		OnActivated: (() -> ())?,
 
-	[any]: any
-})
+		[any]: any,
+	}
+)
 	local updatedProps = Sift.Dictionary.copy(props)
 
 	updatedProps.Icon = nil
@@ -42,7 +45,7 @@ return function(scope: FusionTypes.Scope, props: {
 		[Fusion.Children] = {
 			UIAspectRatioConstraint(scope, {}),
 			UICorner(scope, {
-				CornerRadius = UDim.new(1)
+				CornerRadius = UDim.new(1),
 			}),
 
 			scope:New("Frame")({
@@ -54,7 +57,7 @@ return function(scope: FusionTypes.Scope, props: {
 				[Fusion.Children] = {
 					UIAspectRatioConstraint(scope, {}),
 					UICorner(scope, {
-						CornerRadius = UDim.new(1)
+						CornerRadius = UDim.new(1),
 					}),
 
 					ImageLabel(scope, {
@@ -65,12 +68,12 @@ return function(scope: FusionTypes.Scope, props: {
 						[Fusion.Children] = {
 							UIAspectRatioConstraint(scope, {}),
 							UICorner(scope, {
-								CornerRadius = UDim.new(1)
+								CornerRadius = UDim.new(1),
 							}),
-						}
+						},
 					}),
-				}
-			})
-		}
+				},
+			}),
+		},
 	}, updatedProps))
 end

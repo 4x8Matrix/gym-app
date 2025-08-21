@@ -2,6 +2,7 @@ local ReplicatedFirst = game:GetService("ReplicatedFirst")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local AssetService = game:GetService("AssetService")
+local UserInputService = game:GetService("UserInputService")
 
 local PngLuau = require(ReplicatedStorage.Packages.PngLuau)
 local Trove = require(ReplicatedStorage.Packages.Trove)
@@ -23,10 +24,14 @@ local function startQRCodeSync()
 	local imageFormat = PngLuau.decode(qrCode.qrCodePNG)
 
 	local editableImage = AssetService:CreateEditableImage({
-		Size = Vector2.new(imageFormat.width, imageFormat.height)
+		Size = Vector2.new(imageFormat.width, imageFormat.height),
 	})
 
-	editableImage:WritePixelsBuffer(Vector2.zero, Vector2.new(imageFormat.width, imageFormat.height), imageFormat.pixels)
+	editableImage:WritePixelsBuffer(
+		Vector2.zero,
+		Vector2.new(imageFormat.width, imageFormat.height),
+		imageFormat.pixels
+	)
 
 	State.QRCode:set(Content.fromObject(editableImage))
 
@@ -41,7 +46,7 @@ local function startQRCodeSync()
 	currentTrove:Add(task.delay(deltaTime, function()
 		task.defer(function()
 			startQRCodeSync()
-		
+
 			currentTrove:Destroy()
 		end)
 	end))

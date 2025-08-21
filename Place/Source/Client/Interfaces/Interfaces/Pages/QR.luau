@@ -13,14 +13,20 @@ local Frame = require(ReplicatedFirst.Client.Interfaces.Components.Frame)
 local Header = require(ReplicatedFirst.Client.Interfaces.Components.Header)
 local Border = require(ReplicatedFirst.Client.Interfaces.Components.Border)
 local ImageLabel = require(ReplicatedFirst.Client.Interfaces.Components.ImageLabel)
+local ImageButton = require(ReplicatedFirst.Client.Interfaces.Components.ImageButton)
 local TextLabel = require(ReplicatedFirst.Client.Interfaces.Components.TextLabel)
 local UICorner = require(ReplicatedFirst.Client.Interfaces.Components.UICorner)
 local UIPadding = require(ReplicatedFirst.Client.Interfaces.Components.UIPadding)
 local UIAspectRatioConstraint = require(ReplicatedFirst.Client.Interfaces.Components.UIAspectRatioConstraint)
 
-return function(scope: FusionTypes.Scope, props: {
-	overrideSizeConstraints: UDim2?
-}): ScreenGui
+return function(
+	scope: FusionTypes.Scope,
+	props: {
+		overrideSizeConstraints: UDim2?,
+	}
+): ScreenGui
+	local showPin = scope:Value(false)
+
 	return Frame(scope, {
 		BackgroundTransparency = 1,
 
@@ -29,12 +35,6 @@ return function(scope: FusionTypes.Scope, props: {
 				Size = UDim2.fromScale(0.8, 0.3),
 				Position = UDim2.fromScale(0.5, 0.2),
 				BackgroundTransparency = 1,
-
-				Rotation = scope:Computed(function(use)
-					local mobileRotation = use(State.MobileRotation)
-
-					return mobileRotation
-				end),
 
 				[Fusion.Children] = {
 					Frame(scope, {
@@ -49,9 +49,9 @@ return function(scope: FusionTypes.Scope, props: {
 							ImageLabel(scope, {
 								Image = Theme.SpinIcon,
 								ImageColor3 = Theme.LightColor,
-								Size = UDim2.fromScale(0.7, 0.7)
-							})
-						}
+								Size = UDim2.fromScale(0.7, 0.7),
+							}),
+						},
 					}),
 
 					ImageLabel(scope, {
@@ -63,7 +63,7 @@ return function(scope: FusionTypes.Scope, props: {
 
 						[Fusion.Children] = {
 							UIAspectRatioConstraint(scope, {}),
-						}
+						},
 					}),
 
 					Frame(scope, {
@@ -78,9 +78,9 @@ return function(scope: FusionTypes.Scope, props: {
 							ImageLabel(scope, {
 								Image = Theme.ExpandIcon,
 								ImageColor3 = Theme.LightColor,
-								Size = UDim2.fromScale(0.7, 0.7)
-							})
-						}
+								Size = UDim2.fromScale(0.7, 0.7),
+							}),
+						},
 					}),
 
 					ImageLabel(scope, {
@@ -92,7 +92,7 @@ return function(scope: FusionTypes.Scope, props: {
 
 						[Fusion.Children] = {
 							UIAspectRatioConstraint(scope, {}),
-						}
+						},
 					}),
 
 					Frame(scope, {
@@ -107,14 +107,14 @@ return function(scope: FusionTypes.Scope, props: {
 							ImageLabel(scope, {
 								Image = Theme.ThumbsUpIcon,
 								ImageColor3 = Theme.LightColor,
-								Size = UDim2.fromScale(0.7, 0.7)
-							})
-						}
+								Size = UDim2.fromScale(0.7, 0.7),
+							}),
+						},
 					}),
 
 					Frame(scope, {
 						Size = UDim2.fromScale(0.8, 0.15),
-						Position = UDim2.fromScale(0.5, 0.75),
+						Position = UDim2.fromScale(0.5, 0.55),
 						BackgroundColor3 = Theme.DarkColor,
 
 						[Fusion.Children] = {
@@ -137,12 +137,59 @@ return function(scope: FusionTypes.Scope, props: {
 								BackgroundColor3 = Theme.LightColor,
 
 								[Fusion.Children] = {
-									UICorner(scope, {})
-								}
-							})
-						}
-					})
-				}
+									UICorner(scope, {}),
+								},
+							}),
+						},
+					}),
+
+					Frame(scope, {
+						Size = UDim2.fromScale(0.9, 0.25),
+						Position = UDim2.fromScale(0.5, 0.9),
+						BackgroundColor3 = Theme.DarkColor,
+
+						[Fusion.Children] = {
+							UICorner(scope, {}),
+							UIPadding(scope, {
+								PaddingTop = UDim.new(0.15, 0),
+								PaddingBottom = UDim.new(0.15, 0),
+								PaddingLeft = UDim.new(0.025, 0),
+								PaddingRight = UDim.new(0.025, 0),
+							}),
+
+							TextLabel(scope, {
+								TextColor3 = Theme.LightColor,
+								Size = UDim2.fromScale(0.8, 0.7),
+								FontFace = Theme.Font.Title,
+								Text = scope:Computed(function(use)
+									local doShowPin = use(showPin)
+									local pin = use(State.Pin)
+
+									if doShowPin then
+										return `{pin}`
+									else
+										return `{string.rep("*", #pin)}`
+									end
+								end),
+							}),
+
+							ImageButton(scope, {
+								Image = Theme.KeyIcon,
+								Position = UDim2.fromScale(0.85, 0),
+
+								[Fusion.OnEvent("Activated")] = function()
+									local value = Fusion.peek(showPin)
+
+									showPin:set(not value)
+								end,
+
+								[Fusion.Children] = {
+									UIAspectRatioConstraint(scope, {}),
+								},
+							}),
+						},
+					}),
+				},
 			}),
 
 			Frame(scope, {
@@ -154,12 +201,14 @@ return function(scope: FusionTypes.Scope, props: {
 				[Fusion.Children] = {
 					UIAspectRatioConstraint(scope, {}),
 					UICorner(scope, {
-						CornerRadius = UDim.new(0.05, 0)
+						CornerRadius = UDim.new(0.05, 0),
 					}),
 
 					ImageLabel(scope, {
-						Size = UDim2.fromScale(0.9, 0.9),
+						Size = UDim2.fromScale(0.6, 0.6),
 						Rotation = 180,
+						BackgroundColor3 = Color3.new(1, 0, 0),
+						BackgroundTransparency = 1,
 
 						ImageContent = scope:Computed(function(use)
 							local content = use(State.QRCode)
@@ -170,12 +219,12 @@ return function(scope: FusionTypes.Scope, props: {
 						[Fusion.Children] = {
 							UIAspectRatioConstraint(scope, {}),
 							UICorner(scope, {
-								CornerRadius = UDim.new(0.05, 0)
+								CornerRadius = UDim.new(0.05, 0),
 							}),
-						}
+						},
 					}),
-				}
-			})
-		}
+				},
+			}),
+		},
 	})
 end
